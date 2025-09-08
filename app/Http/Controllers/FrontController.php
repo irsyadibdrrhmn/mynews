@@ -85,4 +85,13 @@ class FrontController extends Controller
 
         return view('front.index', compact('categories', 'articles', 'authors', 'featured_articles', 'bannerads', 'entertainment_articles', 'entertainment_featured_articles', 'business_articles', 'business_featured_articles', 'automotive_articles', 'automotive_featured_articles'));
     }
+
+    public function category(Category $category){
+        $categories = Category::all();
+        $bannerads = banneradvertisement::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+        return view('front.category', compact('category', 'categories', 'bannerads'));
+    }
 }
