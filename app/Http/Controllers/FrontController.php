@@ -94,4 +94,8 @@ class FrontController extends Controller
         ->first();
         return view('front.category', compact('category', 'categories', 'bannerads'));
     }
+
+    public function author(Author $author){
+        return view('front.author', compact( 'author'));
+    }
 }
