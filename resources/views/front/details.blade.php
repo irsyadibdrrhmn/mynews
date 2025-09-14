@@ -36,19 +36,19 @@
 				<div id="Rating" class="flex items-center gap-1">
 					<div class="flex items-center">
 						<div class="w-4 h-4 flex shrink-0">
-							<img src="assets/images/icons/Star 1.svg" alt="star">
+							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
 						</div>
 						<div class="w-4 h-4 flex shrink-0">
-							<img src="assets/images/icons/Star 1.svg" alt="star">
+							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
 						</div>
 						<div class="w-4 h-4 flex shrink-0">
-							<img src="assets/images/icons/Star 1.svg" alt="star">
+							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
 						</div>
 						<div class="w-4 h-4 flex shrink-0">
-							<img src="assets/images/icons/Star 1.svg" alt="star">
+							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
 						</div>
 						<div class="w-4 h-4 flex shrink-0">
-							<img src="assets/images/icons/Star 1.svg" alt="star">
+							<img src="{{asset('assets/images/icons/Star 1.svg')}}" alt="star">
 						</div>
 					</div>
 					<p class="font-semibold text-xs leading-[18px]">(12,490)</p>
@@ -65,63 +65,43 @@
 		</article>
 		<div class="side-bar flex flex-col w-[300px] shrink-0 gap-10">
 			<div class="ads flex flex-col gap-3 w-full">
-				<a href="">
-					<img src="assets/images/iklans/banner.png" class="object-contain w-full h-full" alt="ads" />
+				<a href="{{$square_ads_1->link}}">
+					<img src="{{Storage::url($square_ads_1->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
 				</a>
 				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
 					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-							src="assets/images/icons/message-question.svg" alt="icon" /></a>
+							src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
 				</p>
 			</div>
 			<div id="More-from-author" class="flex flex-col gap-4">
 				<p class="font-bold">More From Author</p>
-				<a href="" class="card-from-author">
+
+                @forelse($author_news as $item_news)
+				<a href="{{route('front.details', $item_news->slug)}}" class="card-from-author">
 					<div
 						class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[14px] flex gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
 						<div class="w-[70px] h-[70px] flex shrink-0 overflow-hidden rounded-2xl">
-							<img src="assets/images/thumbnails/th-demonstration.png" class="object-cover w-full h-full"
+							<img src="{{Storage::url($item_news->thumbnail)}}" class="object-cover w-full h-full"
 								alt="thumbnail">
 						</div>
 						<div class="flex flex-col gap-[6px]">
-							<p class="line-clamp-2 font-bold">Gaya pakaian pernikahan artis Lorem, ipsum dolor.</p>
-							<p class="text-xs leading-[18px] text-[#A3A6AE]">12 Jun, 2024 • Entertainment</p>
+							<p class="font-bold text-lg leading-[27px] line-clamp-2">{{$item_news->name}}</p>
+							<p class="text-xs leading-[18px] text-[#A3A6AE]">{{$item_news->created_at->format('M d, Y')}} • {{$item_news->category->name}}</p>
 						</div>
 					</div>
 				</a>
-				<a href="" class="card-from-author">
-					<div
-						class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[14px] flex gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-						<div class="w-[70px] h-[70px] flex shrink-0 overflow-hidden rounded-2xl">
-							<img src="assets/images/thumbnails/th-cyclist.png" class="object-cover w-full h-full"
-								alt="thumbnail">
-						</div>
-						<div class="flex flex-col gap-[6px]">
-							<p class="line-clamp-2 font-bold">Gaya pakaian pernikahan artis Lorem, ipsum dolor.</p>
-							<p class="text-xs leading-[18px] text-[#A3A6AE]">12 Jun, 2024 • Entertainment</p>
-						</div>
-					</div>
-				</a>
-				<a href="" class="card-from-author">
-					<div
-						class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[14px] flex gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-						<div class="w-[70px] h-[70px] flex shrink-0 overflow-hidden rounded-2xl">
-							<img src="assets/images/thumbnails/model.png" class="object-cover w-full h-full"
-								alt="thumbnail">
-						</div>
-						<div class="flex flex-col gap-[6px]">
-							<p class="line-clamp-2 font-bold">Gaya pakaian pernikahan artis Lorem, ipsum dolor.</p>
-							<p class="text-xs leading-[18px] text-[#A3A6AE]">12 Jun, 2024 • Entertainment</p>
-						</div>
-					</div>
-				</a>
+                @empty
+                <p>belum ada artikel terbaru lainnya</p>
+                @endforelse
+                
 			</div>
 			<div class="ads flex flex-col gap-3 w-full">
-				<a href="">
-					<img src="assets/images/iklans/banner1.png" class="object-contain w-full h-full" alt="ads" />
+				<a href="{{$square_ads_2->link}}">
+					<img src="{{Storage::url($square_ads_2->thumbnail)}}" class="object-contain w-full h-full" alt="ads" />
 				</a>
 				<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
 					Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-							src="assets/images/icons/message-question.svg" alt="icon" /></a>
+							src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
 				</p>
 			</div>
 		</div>
@@ -135,7 +115,7 @@
 			</a>
 			<p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
 				Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-						src="assets/images/icons/message-question.svg" alt="icon" /></a>
+						src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
 			</p>
 		</div>
 	</section>
