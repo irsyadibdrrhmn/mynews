@@ -118,4 +118,36 @@ class FrontController extends Controller
 
         return view('front.search', compact('articles', 'keyword', 'categories'));
     }
+
+    public function details(articlenews $articleNews){
+        $categories = Category::all();
+        
+        $articles = articlenews::with(['category'])
+        ->where('is_featured', 'not_featured')
+        ->where('id', '!=', $articleNews->id)
+        ->latest()
+        ->take(3)
+        ->get();
+
+        $bannerads = banneradvertisement::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+
+        $square_ads = banneradvertisement::where('type', 'square')
+        ->where('is_active', 'active')
+        ->inRandomOrder()
+        ->take(2)
+        ->get();
+
+        if($square_ads->count() < 2) {
+            $square_ads_1 = $square_ads->first();
+            $square_ads_1 = null;
+        } else {
+            $square_ads_1 = $square_ads->get(0);
+            $square_ads_1 = $square_ads->get(1);
+        }
+
+        return view('front.details', compact('articleNews', 'categories', 'articles', 'bannerads'));
+    }
 }
