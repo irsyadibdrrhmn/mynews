@@ -27,7 +27,7 @@
 				<div class="w-6 h-6 flex shrink-0">
 					<img src="{{asset('assets/images/icons/favorite-chart.svg')}}" alt="icon" />
 				</div>
-				<span>Post Ads</span>
+				<span>Post Ads Now!</span>
 			</a>
 		</div>
 	</nav>
