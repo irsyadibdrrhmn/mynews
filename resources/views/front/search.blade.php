@@ -60,7 +60,7 @@
 				</div>
 			    </a>
                 @empty
-                <p>belum ada artikel dengan keyword tersebut</p>
+                <p>Belum ada artikel dengan keyword tersebut</p>
                 @endforelse
 				
 			</div>
