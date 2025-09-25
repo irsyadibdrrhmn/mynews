@@ -151,7 +151,7 @@
 				</div>
 			    </a>
                 @empty
-                <p>belum ada article lainnya</p>
+                <p>Belum ada berita lainnya.</p>
                 @endforelse
                 
 			</div>
